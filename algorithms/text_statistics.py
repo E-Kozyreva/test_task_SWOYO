@@ -21,7 +21,7 @@ class TextStatistics:
         
     # слова из текста
     def get_words(self) -> list:
-        self.words = re.findall(r'\w+', self.text)
+        self.words = re.findall(r'[a-zA-Zа-яА-Я]+', self.text)
         return self.words
     
     # количество слов
@@ -58,7 +58,6 @@ class TextStatistics:
                 self.bilingual_words += 1 
                   
         return self.bilingual_words
-
 
 
 def text_statistics(file_path: str) -> dict:
