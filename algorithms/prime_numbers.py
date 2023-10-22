@@ -20,5 +20,5 @@ def prime_numbers(low: int, high: int) -> list:
     if (isinstance(low, (int, float)) and 
         isinstance(high, (int, float)) and 
         low <= high):
-        return [elem for elem in SieveOfEratosthenes(int(high)) if elem >= ceil(low)]
+        return [n for n in SieveOfEratosthenes(int(high)) if n >= ceil(low)]
     return []

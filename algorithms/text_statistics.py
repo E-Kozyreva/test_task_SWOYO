@@ -7,12 +7,17 @@ class TextStatistics:
         self.words = []
         self.letters = ()
         self.frequency = {}
-        self.bilingual_words = []
+        self.bilingual_words = 0
         
     # текст из файла
-    def get_text(self, file_path: str) -> str:
-        with open(file_path, 'r', encoding='UTF-8') as file:
-            self.text = file.read()
+    def get_text(self, file_path: str):
+        try:
+            with open(file_path, 'r', encoding='UTF-8') as file:
+                self.text = file.read()
+        except FileNotFoundError:
+            return {'error': 'Файла с таким именем не существует.'}
+        except ValueError:
+            return {'error': 'Аргументом должна быть строка - путь к файлу.'}
         
     # слова из текста
     def get_words(self) -> list:
@@ -30,10 +35,10 @@ class TextStatistics:
     
     # количество букв и их частоту
     def letters_frequency(self) -> dict:
-        split_text = "".join(self.words)
+        split_words = "".join(self.words)
 
         for letter in self.letters:
-            f_letter = split_text.count(letter)
+            f_letter = split_words.count(letter)
             p_letter = 0
             for w in self.words:
                 if letter in w:
@@ -50,15 +55,21 @@ class TextStatistics:
     def bilingual_word_amount(self) -> int:
         for w in self.words:
             if re.search(r'[a-zA-Z]', w) and re.search(r'[а-яА-Я]', w):
-                self.bilingual_words.append(w)   
+                self.bilingual_words += 1 
                   
         return self.bilingual_words
 
 
 
-def text_statistics(file_path: str) -> tuple:
+def text_statistics(file_path: str) -> dict:
     ts = TextStatistics()
-    ts.get_text(file_path)
+    status = ts.get_text(file_path)
+    
+    if status == {'error': 'Файла с таким именем не существует.'}:
+        return status
+    elif status == {'error': 'Аргументом должна быть строка - путь к файлу.'}:
+        return status
+    
     ts.get_words()
     ts.get_letters()
 
@@ -74,6 +85,6 @@ def text_statistics(file_path: str) -> tuple:
 
     text_statistics["word_amount"] = w_amount
     text_statistics["paragraph_amount"] = p_amount
-    text_statistics["bilingual_word_amount"] = len(b_words)
+    text_statistics["bilingual_word_amount"] = b_words
 
     return text_statistics
