@@ -36,15 +36,15 @@ class TestRomanNumbers(unittest.TestCase):
 
 
 class TestTextStat(unittest.TestCase):
-
+    
     def test_incorrect_file_1(self):
-        self.assertEqual(text_statistics(10),
+        self.assertEqual(text_statistics(1),
             {'error': 'Аргументом должна быть строка - путь к файлу.'})
 
     def test_incorrect_file_2(self):
         self.assertEqual(text_statistics('../file.txt'),
             {'error': 'Файла с таким именем не существует.'})
-
+    
     def test_correct_file(self):
         answer = {'П': (2, 2),
                 'р': (50, 42),
