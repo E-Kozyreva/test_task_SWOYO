@@ -41,6 +41,6 @@
 <ul>
   <li>В папке <strong>algorithms</strong> хранятся реализованные алгоритмы и файл <strong>test.py</strong> с тестами для каждого алгоритма.</li>
   <li>В папке <strong>base_of_algorithms</strong> хранятся блокноты с аогоритмами для поэтапной отладки и тестирования.</li>
-  <li>А папке <strong>test_data</strong> зранится фыайл с текстом для запуска алгоритма <strong>algorithms/text_statistics.py</strong>.</li>
+  <li>А папке <strong>test_data</strong> хранится файл с текстом для запуска алгоритма <strong>algorithms/text_statistics.py</strong>.</li>
 </ul>
 </details>
